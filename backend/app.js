@@ -18,10 +18,9 @@ app.use(cors({origin: 'http://localhost:4200', credentials: true}));
 // chaque route correspond à un fichier que l'on charge via un require. Ce
 // fichier exporte juste une fonction, que l'on appelle quand l'utilisateur
 // demande à accéder à la route.
+const getListeUsers = require ('./getListeUsers');
 
-const getAllUsers = require ('./getAllUsers');
-
-app.post('/getAllUsers', (req, res) => { getAllUsers.getallusers(req,res); });
+app.post ('/getListeUsers', (req, res) => { getListeUsers.getlisteusers(req,res); });
 
 app.listen(port, () => {console.log (`listening on port ${port}`)});
 

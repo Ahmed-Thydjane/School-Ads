@@ -1,18 +1,19 @@
-const config = {
+const mysqlConfig = {
     // paramètres de connexion à la base de données
-    mysqlHost:             'localhost',
-    mysqlDatabase:         'school-ads',
-    charset:               'utf8',
-    mysqlLogin:            'root',
-    mysqlPassword:         '',
+    mysqlHost:     '127.0.0.1',
+    mysqlDatabase: 'school-ads',
+    charset:       'utf8',
+    mysqlLogin:    'root',
+    mysqlPassword: '',
 
-    //les noms des tables
-    mysqlTableAdministrateur:       'administrateur',
-    mysqlTableAnnonce:               'annonce',
-    mysqlTableUtilisateur:          'utilisateur'
+    // les noms des tables
+    mysqlTableAdministrateur: 'administrateur',
+    mysqlTableAnnonce: 'annonce',
+    mysqlTableUtilisateur: 'utilisateur'
 };
 
-// on exporte la config. En l'exportant comme ci-dessous, on pourra utiliser la
+// on exporte la mysqlConfig. En l'exportant comme ci-dessous, on pourra utiliser la
 // syntaxe suivante pour la charger dans d'autres fichiers :
-// const config = require ('./config');
-module.exports = config;
+// const mysqlConfig = require ('./mysqlConfig');
+module.exports = mysqlConfig;
+
