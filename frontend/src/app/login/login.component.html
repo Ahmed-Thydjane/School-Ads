@@ -1,0 +1,28 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<div class="container">
+    <div class="row">
+    	<div class="col-md-4 col-md-offset-4">
+    		<div class="panel panel-default">
+			  	<div class="panel-body">
+			    	<form accept-charset="UTF-8" role="form">
+                    <fieldset>
+			    	  	<div class="form-group">
+			    		    <input class="form-control" placeholder=" Ex : Dupont@gmail.com" type="text" [(ngModel)]="email" [ngModelOptions]="{standalone: true}">
+			    		</div>
+			    		<div class="form-group">
+			    			<input class="form-control" placeholder="Password" type="password" value="" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
+			    		</div>
+						<p class="alert-danger" *ngIf="messageError!=''">{{messageError}}</p>
+			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Log in" (click) ="afficher1()">
+						<input class="btn btn-lg btn-facebook btn-block" type="submit" value="Sign in" (click) ="afficher2()">
+			    	</fieldset>
+			      	</form>
+                    <hr/>
+                    <input class="btn btn-lg btn-facebook btn-block" type="submit" value="Login via facebook">
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>

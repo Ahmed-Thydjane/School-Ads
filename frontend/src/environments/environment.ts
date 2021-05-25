@@ -3,8 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  prefix : 'http://127.0.0.1:3000/',
-  production: false
+  production: false,
+  urlGenerale : "http://localhost/School-Ads/backendtest"
 };
 
 /*

@@ -1,0 +1,88 @@
+<ng-template #dialog>
+  <h2 matDialogTitle>Vous êtes inscrit !</h2>
+  <p matDialogContent> {{alertinscrit}}</p>
+  <mat-dialog-actions align='end'>
+    <button mat-button matDialogClose>Ok</button>
+  </mat-dialog-actions>
+</ng-template>
+<div class="container">
+<div class="row">
+<div class="col-md-4 col-md-offset-4">
+    <div class="panel panel-default">
+		<div class="panel-body">
+			<form accept-charset="UTF-8" role="form">
+            <fieldset>
+			    <div class="form-group">
+			        <label for="select" class="col-lg-2">Type</label>
+                        <div class="col-lg-7">
+                            <select class="form-control select2"[(ngModel)]="type" (ngModelChange)='onSelectedType($event)' [ngModelOptions]="{standalone: true}">
+                                <option *ngFor="let p of types" [value]="p.name">
+                                    {{p.name}}
+                                </option>
+                            </select>
+                        </div>
+                  <br/>
+                  <br/>
+                  <p class="alert-danger" *ngIf="errorMessageType!=''">{{errorMessageType}}</p>
+			    </div>
+                <div class="form-group">
+			        <label for="select" class="col-lg-2">Cible</label>
+                        <div class="col-lg-7">
+                            <select class="form-control select2"[(ngModel)]="cible" (ngModelChange)='onSelectedCible($event)' [ngModelOptions]="{standalone: true}">
+                                <option *ngFor="let p of cibles" [value]="p.name">
+                                    {{p.name}}
+                                </option>
+                            </select>
+                        </div>
+                  <br/>
+                  <br/>
+                  <p class="alert-danger" *ngIf="errorMessageCible!=''">{{errorMessageCible}}</p>
+			    </div>
+                <div class="form-group">
+			        <label for="select" class="col-lg-2">Duree</label>
+                        <div class="col-lg-7">
+                            <select class="form-control select2"[(ngModel)]="duree" (ngModelChange)='onSelectedDuree($event)' [ngModelOptions]="{standalone: true}">
+                                <option *ngFor="let p of durees" [value]="p.name">
+                                    {{p.name}}
+                                </option>
+                            </select>
+                        </div>
+                  <br/>
+                  <br/>
+                  <p class="alert-danger" *ngIf="errorMessageDuree!=''">{{errorMessageDuree}}</p>
+			    </div>
+                <div class="form-group">
+			        <label for="select" class="col-lg-2">Duree min</label>
+                        <div class="col-lg-7">
+                            <select class="form-control select2"[(ngModel)]="duremin" (ngModelChange)='onSelectedDureeMin($event)' [ngModelOptions]="{standalone: true}">
+                                <option *ngFor="let p of duremins" [value]="p.name">
+                                    {{p.name}}
+                                </option>
+                            </select>
+                        </div>
+                  <br/>
+                  <br/>
+                  <p class="alert-danger" *ngIf="errorMessageDureeMin!=''">{{errorMessageDureeMin}}</p>
+			    </div>
+                <div class="form-group">
+			        <label for="select" class="col-lg-2">Duree max</label>
+                        <div class="col-lg-7">
+                            <select class="form-control select2"[(ngModel)]="duremax" (ngModelChange)='onSelectedDureeMax($event)' [ngModelOptions]="{standalone: true}">
+                                <option *ngFor="let p of duremaxs" [value]="p.name">
+                                    {{p.name}}
+                                </option>
+                            </select>
+                        </div>
+                  <br/>
+                  <br/>
+                  <p class="alert-danger" *ngIf="errorMessageDureeMax!=''">{{errorMessageDureeMax}}</p>
+			    </div>
+			</fieldset>
+			</form>
+            <input class="btn btn-lg btn-success btn-block" type="submit" value="Validate" (click) ="valider()">
+			<input class="btn btn-lg btn-facebook btn-block" type="submit" value="Cancel" (click) ="annuler()">
+		</div>
+	</div>
+</div>
+</div>
+</div>
