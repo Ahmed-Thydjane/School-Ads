@@ -1,18 +1,23 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {NodeData} from "./NodeData";
-import {environment} from "../../environments/environment";
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
+export interface PhpData {
+  status : string;
+  data : any;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http : HttpClient) { }
 
-  sendMessage(url:string, data:any):Observable<NodeData>{
-    const url_entier = environment.prefix + url ;
-    return  this.http.post<NodeData>(url_entier,data,{withCredentials: true});
+  sendMessage(url : string, data : any): Observable<PhpData>  {
+    const urlg = environment.urlGenerale + url ;
+
+    return this.http.post<PhpData>(urlg, data, {withCredentials: true});
   }
 }
