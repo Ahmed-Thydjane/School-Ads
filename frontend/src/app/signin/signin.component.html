@@ -1,0 +1,64 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<ng-template #dialog>
+  <h2 matDialogTitle>Bien joué !</h2>
+  <p matDialogContent> {{alertinscrit}}</p>
+  <mat-dialog-actions align='end'>
+    <button mat-button matDialogClose>Ok</button>
+  </mat-dialog-actions>
+</ng-template>
+<div class="container">
+    <div class="row">
+    	<div class="col-md-4 col-md-offset-4">
+    		<div class="panel panel-default">
+			  	<div class="panel-body">
+			    	<form accept-charset="UTF-8" role="form">
+            <fieldset>
+			    	  	<div class="form-group">
+                  <label for="inputEmail4">Nom</label>
+			    		    <input class="form-control" placeholder="Nom" type="text" [(ngModel)]="nom" [ngModelOptions]="{standalone: true}">
+                  <p class="alert-danger" *ngIf="errorMessageNom!=''">{{errorMessageNom}}</p>
+			    		  </div>
+			    		  <div class="form-group">
+                  <label for="inputEmail4">Prenom</label>
+			    			  <input class="form-control" placeholder="Prenom" type="text" [(ngModel)]="prenom" [ngModelOptions]="{standalone: true}">
+                  <p class="alert-danger" *ngIf="errorMessagePrenom!=''">{{errorMessagePrenom}}</p>
+			    		  </div>
+                <div class="form-group">
+                  <label for="inputEmail4">Email</label>
+			    		    <input class="form-control" placeholder="Email" type="text" [(ngModel)]="email" [ngModelOptions]="{standalone: true}">
+                  <p class="alert-danger" *ngIf="errorMessageEmail!=''">{{errorMessageEmail}}</p>
+			    		  </div>
+			    		  <div class="form-group">
+                  <label for="inputPassword4">Password</label>
+			    			  <input class="form-control" placeholder="Password" type="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
+                  <p class="alert-danger" *ngIf="errorMessagePassword!=''">{{errorMessagePassword}}</p>
+			    		  </div>
+                <div class="form-group">
+                  <label for="inputPassword4">Confirmation du password</label>
+			    		    <input class="form-control" placeholder="Confirmation du password" type="password" [(ngModel)]="passwordco" [ngModelOptions]="{standalone: true}">
+                  <p class="alert-danger" *ngIf="errorMessagePasswordCo!=''">{{errorMessagePasswordCo}}</p>
+			    		  </div>
+			    		  <div class="form-group">
+			    			  <label for="select" class="col-lg-2">Profil</label>
+                  <div class="col-lg-7">
+                    <select class="form-control select2"[(ngModel)]="profil" (ngModelChange)='onSelectedProfil($event)' [ngModelOptions]="{standalone: true}">
+                      <option *ngFor="let p of profils" [value]="p.name">
+                          {{p.name}}
+                      </option>
+                    </select>
+                  </div>
+                  <br/>
+                  <br/>
+                  <p class="alert-danger" *ngIf="errorMessageProfil!=''">{{errorMessageProfil}}</p>
+			    		  </div>
+			    	</fieldset>
+			      </form>
+            <input class="btn btn-lg btn-success btn-block" type="submit" value="Sign in" (click) ="inscrire()">
+						<input class="btn btn-lg btn-facebook btn-block" type="submit" value="Cancel" (click) ="annuler()">
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>
