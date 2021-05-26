@@ -18,7 +18,6 @@ db.connect((err) =>{
 
 module.exports.db = db;
 
-module.exports = db;
 
 function sqlPromise(query,data,typequery, type){
     if(typequery === "SELECT"){

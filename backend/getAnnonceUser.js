@@ -1,5 +1,5 @@
-// le fichier mysqlQueries contient des fonctions qui réalisent
-// les queries dans la base de données.
+// le fichier mysqlQuerys contient des fonctions qui réalisent
+// les querys dans la base de données.
 const queries = require('./mysqlQueries');
 
 // ici, on utilise ce que l'on appelle l'object destructuring de
@@ -11,22 +11,22 @@ const queries = require('./mysqlQueries');
 // const message = require ("./message");
 // on aurait dû, par la suite, appeler message.sendError () et
 // message.sendMessage ().
-const {sendError, sendMessage} = require ("./message");
+const{sendError, sendMessage} = require("./message");
 
 // permettra de réaliser l'authentification
-const auth = require ('./auth');
+const auth = require('./auth');
 
 // ici, pour réaliser séquentiellement plusieurs requêtes mySQL (ce
 // qui devra être fait pour répondre à certaines requêtes de votre
 // appli Angular, on va utiliser l'opérateur "await "(voir ci-dessous).
 // A noter que toutes les fonctions qui utilisent ce mot clef doivent
 // être déclarées comme asynchrones via le mot clef async
-async function getlisteusers (req, res) {
+async function getannonceuser (req,res){
     // on récupère la variable de session et, dans celle-ci, on
-    // va récupérer l'ID du user. C'est équivalent en PHP à :
+    // va récupérer le LOGIN du user. C'est équivalent en PHP à :
     // session_start();
-    // $userId = $_SESSION['userId'];
-    const session = auth.getSession (req);
+    // $login = $_SESSION['login'];
+    const  session = auth.getSession(req);
     const userId = auth.getUserId(session);
     if (userId == -1)
         return sendError (res, 'not authenticated');
@@ -34,9 +34,8 @@ async function getlisteusers (req, res) {
     // serveur, en Node/Express, on ne conserve pas cette information.
     // il faut donc renvoyer le cookie de session après chaque requête
     auth.setSessionCookie (req, res, session);
-
     // maintenant que l'on est identifié et que l'on a récupéré la valeur
-    // de maxId, on peut réaliser les requêtes mySQL.
+    // de Login, on peut réaliser les requêtes mySQL.
     // Grâce au mot clef "await", celles-ci sont réalisées séquentiellement :
     // même si les requêtes mysql sont asynchrones, await va attendre la
     // réponse de la requête avant de passer à la suite.
@@ -44,10 +43,15 @@ async function getlisteusers (req, res) {
     // comment réaliser des requêtes séquentielles à la manière de PHP : ici,
     // on aurait pu se contenter d'une seule requête MySQL pour obtenir le
     // même résultat.
-    const listeusers = await queries.ListeUsers();
-    console.log(listeusers);
-    // on renvoie au format JSON la liste des cours demandés par l'utilisateur
-    sendMessage(res, listeusers);
+    console.log("iduser: ",userId);
+    let userannonce = await queries.getAnnonceByUser(userId);
+    console.log("userannonce :",userannonce);
+    if(typeof(userannonce)!== "undefined"){
+        // on renvoie au format JSON la liste des cours demandés par l'utilisateur
+        sendMessage(res,userannonce);
+    }else {
+        sendError("Il n y a aucune annonces pour l'instant");
+    }
 }
-module.exports.getlisteusers = getlisteusers;
+module.exports.getannonceuser = getannonceuser;
 
