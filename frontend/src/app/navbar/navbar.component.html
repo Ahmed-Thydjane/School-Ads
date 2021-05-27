@@ -1,0 +1,38 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+  <div  *ngIf="!isLoggedIn()" class="navbar-header" >
+    <span style="margin:auto;" class="navbar-brand">School-Ads</span>
+  </div>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <div  *ngIf="isLoggedIn()" >
+    <span style="margin:auto;" >School-Ads</span>
+  </div>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link"  *ngIf="isAdmin() || isLoggedIn()" routerLink="/annonces">Toutes les annonces</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="isAdmin() || isLoggedIn()" routerLink="/mesannonces">Mes annonces</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="isAdmin()" routerLink="/addadmin">Administration</a>
+      </li>
+      <li class="nav-item dropdown" *ngIf="isAdmin() || isLoggedIn()">
+        <a style="cursor: pointer;" id="dropdownSubMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle" >
+          <i class="fa fa-fw fa-user"></i>
+        </a>
+        <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+          <li>
+            <a routerLink="/updateuser" *ngIf="isAdmin() || isLoggedIn()" class="dropdown-item">Mon compte</a>
+          </li>
+          <li>
+            <a class="dropdown-item" style="cursor: pointer;" *ngIf="isAdmin() || isLoggedIn()" (click)="isLoggedOut()"> Déconnexion</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <button *ngIf="isAdmin() || isLoggedIn()" class="btn btn-outline-success my-2 my-sm-0" type="submit" routerLink="/addannonces">+Publier une annonce</button>
+      </li>     
+    </ul>
+  </div>
+</nav>
