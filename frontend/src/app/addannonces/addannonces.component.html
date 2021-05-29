@@ -6,6 +6,12 @@
 			<form accept-charset="UTF-8" role="form">
             <fieldset>
 			    <div class="form-group">
+                    <label >Titre</label>
+                    <input class="form-control" placeholder="Titre" type="text" [(ngModel)]="titre" [ngModelOptions]="{standalone: true}">
+                            <!--<p class="alert-danger" *ngIf="errorMessageNomA!=''">{{errorMessageNomA}}</p>-->
+                            <p class="alert-danger" *ngIf="errorMessageTitre!=''">{{errorMessageTitre}}</p>
+                </div>
+                <div class="form-group">           
 			        <label for="select" class="col-lg-2">Type</label>
                         <div class="col-lg-7">
                             <select class="form-control select2"[(ngModel)]="type" (ngModelChange)='onSelectedType($event)' [ngModelOptions]="{standalone: true}">
@@ -14,8 +20,6 @@
                                 </option>
                             </select>
                         </div>
-                  <br/>
-                  <br/>
                   <p class="alert-danger" *ngIf="errorMessageType!=''">{{errorMessageType}}</p>
 			    </div>
                 <div class="form-group">
@@ -27,8 +31,6 @@
                                 </option>
                             </select>
                         </div>
-                  <br/>
-                  <br/>
                   <p class="alert-danger" *ngIf="errorMessageCible!=''">{{errorMessageCible}}</p>
 			    </div>
                 <div class="form-group">
@@ -40,8 +42,6 @@
                                 </option>
                             </select>
                         </div>
-                  <br/>
-                  <br/>
                   <p class="alert-danger" *ngIf="errorMessageDuree!=''">{{errorMessageDuree}}</p>
 			    </div>
                 <div class="form-group">
@@ -53,8 +53,6 @@
                                 </option>
                             </select>
                         </div>
-                  <br/>
-                  <br/>
                   <p class="alert-danger" *ngIf="errorMessageDureeMin!=''">{{errorMessageDureeMin}}</p>
 			    </div>
                 <div class="form-group">
@@ -66,10 +64,39 @@
                                 </option>
                             </select>
                         </div>
-                  <br/>
-                  <br/>
-                  <p class="alert-danger" *ngIf="errorMessageDureeMax!=''">{{errorMessageDureeMax}}</p>
+                    <p class="alert-danger" *ngIf="errorMessageDureeMax!=''">{{errorMessageDureeMax}}</p>
 			    </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Description</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlFile1">Example file input</label>
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                </div>
+                <div class="form-group ">
+                    <div class="col-sm-10">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" [(ngModel)]="isChecked" [ngModelOptions]="{standalone: true}">
+                        <label class="form-check-label" for="gridCheck1">
+                          Permettre aux étudiants de postuler directement
+                        </label>
+                      </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label >Email du responsable</label>
+                    <input *ngIf="isChecked" class="form-control" placeholder="Email du responsable" type="text" [(ngModel)]="emailRes" [ngModelOptions]="{standalone: true}" enabled>
+                    <input *ngIf="!isChecked" class="form-control" placeholder="Email du responsable" type="text" [(ngModel)]="emailRes" [ngModelOptions]="{standalone: true}" disabled>
+                    <!--<p class="alert-danger" *ngIf="errorMessageNomA!=''">{{errorMessageNomA}}</p>-->
+                </div>
+                <div class="form-group">
+                    <label >Telephone du responsable</label>
+                    <input *ngIf="isChecked" class="form-control" placeholder="Telephone du responsable" type="text" [(ngModel)]="telRes" [ngModelOptions]="{standalone: true}" enabled>
+                    <input *ngIf="!isChecked" class="form-control" placeholder="Telephone du responsable" type="text" [(ngModel)]="telRes" [ngModelOptions]="{standalone: true}" disabled>
+                    
+                    <!--<p class="alert-danger" *ngIf="errorMessageNomA!=''">{{errorMessageNomA}}</p>-->
+                </div>
 			</fieldset>
 			</form>
             <input class="btn btn-lg btn-success btn-block" type="submit" value="Validate" (click) ="valider()">

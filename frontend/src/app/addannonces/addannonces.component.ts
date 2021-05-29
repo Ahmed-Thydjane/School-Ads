@@ -1,7 +1,8 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Cible } from './cible';
+import { MessageService } from '../message/message.service';
+import { Cible } from './Cible';
 import { Duree } from './Duree';
 import { Dureemax } from './Dureemax';
 import { Dureemin } from './Dureemin';
@@ -14,6 +15,8 @@ import { Type } from './Type';
 })
 export class AddannoncesComponent implements OnInit {
   @ViewChild('dialog') Dialog : TemplateRef<any>;
+
+  isChecked : boolean = true;
 
   type : string;
   types : Type[];
@@ -36,9 +39,10 @@ export class AddannoncesComponent implements OnInit {
   idUser : number;
   vue : number;
   candidature : number;
-  emailres : string;
-  telres : string;
+  emailRes : string;
+  telRes : string;
 
+  errorMessageTitre : string;
   errorMessageType : string;
   errorMessageCible : string;
   errorMessageDuree : string;
@@ -47,7 +51,7 @@ export class AddannoncesComponent implements OnInit {
 
   alertinscrit =  "C est bon ! vous êtes bien inscrit, nous vous redirigerons vers la page de login pour vous connecter ! ";
 
-  constructor(private dialog : MatDialog,  private rooter : Router) { }
+  constructor(private message : MessageService, private dialog : MatDialog,  private rooter : Router) { }
 
   ngOnInit(): void {
     this.types = [{name:"stage"},{name:"alternance"},{name:"collocation"}];
@@ -70,11 +74,30 @@ export class AddannoncesComponent implements OnInit {
   onSelectedDureeMax(val:string){this.duremax = val;}
 
   valider(){
-    console.log(this.type);
-    console.log(this.cible);
-    console.log(this.duree);
-    console.log(this.duremin);
-    console.log(this.duremax);
+    this.errorMessageTitre = '';
+    this.errorMessageType = '';
+    this.errorMessageCible = '';
+    this.errorMessageDuree ='';
+    this.errorMessageDureeMin = '';
+    this.errorMessageDureeMax = '';
+    if(this.titre == ''){
+      this.errorMessageTitre = "Vous êtes obligé de remplir le champ Titre ! ";
+    }
+    if(this.cible == null){
+       this.errorMessageCible = "Vous êtes obligé de remplir le champ Cible ! ";
+    }
+    if(this.type == null){
+      this.errorMessageType = "Vous êtes obligé de remplir le champ Type ! ";
+     }
+    if(this.duree == null){
+      this.errorMessageDuree = "Vous êtes obligé de remplir le champ Duree ! ";
+     }
+     else{
+      if(localStorage.getItem('idAdmin')!=''){
+        //this.message.sendMessage()
+      }
+     }
+    
   }
 
   annuler(){

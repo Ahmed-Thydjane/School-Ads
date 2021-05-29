@@ -1,12 +1,13 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <nav class="navbar navbar-expand-md navbar-dark bg-primary">
   <div  *ngIf="!isLoggedIn()" class="navbar-header" >
-    <span style="margin:auto;" class="navbar-brand">School-Ads</span>
+    <img src="assets/img/logo.jpg" style="border: solid 1px white; border-radius: 100px; width: 80px;margin:auto;">
+    <!--<span style="margin:auto;" class="navbar-brand">School-Ads</span>-->
   </div>
   <div class="collapse navbar-collapse" id="navbarNav">
     <div  *ngIf="isLoggedIn()" >
-    <span style="margin:auto;" >School-Ads</span>
-  </div>
+      <img src="assets/img/logo.jpg" style="border: solid 1px white; border-radius: 100px; width: 80px;margin:auto;">
+    </div>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item active">
         <a class="nav-link"  *ngIf="isAdmin() || isLoggedIn()" routerLink="/annonces">Toutes les annonces</a>
@@ -15,7 +16,7 @@
         <a class="nav-link" *ngIf="isAdmin() || isLoggedIn()" routerLink="/mesannonces">Mes annonces</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" *ngIf="isAdmin()" routerLink="/addadmin">Administration</a>
+        <a class="nav-link" *ngIf="isAdmin()" routerLink="/administration">Administration</a>
       </li>
       <li class="nav-item dropdown" *ngIf="isAdmin() || isLoggedIn()">
         <a style="cursor: pointer;" id="dropdownSubMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle" >

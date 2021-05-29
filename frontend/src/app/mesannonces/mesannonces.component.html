@@ -1,1 +1,25 @@
-<p>mesannonces works!</p>
+<ng-template #dialog>
+    <h2 matDialogTitle>{{titre}}</h2>
+        <p matDialogContent>{{description}}</p>
+        <mat-dialog-actions align='end'>
+            <button mat-button matDialogClose>Fermer</button>
+        </mat-dialog-actions>
+</ng-template>
+<div class="row"  *ngFor="let i of annonces" >
+    <div class="col-md-4" style="display: block; margin-left: auto;margin-right: auto; border: solid 2px black; border-radius: 20px; margin-bottom: 15px;">
+        <div class="box box-widget widget-user-2">
+            <div class="widget-user-header bg-yellow">
+                <h3 class="widget-user-username">{{i.field.nom}} {{i.field.prenom}}</h3>
+                <h5 class="widget-user-desc">{{i.field.profil}}</h5>
+            </div>
+            <div class="box-footer no-padding">
+                <ul class="nav nav-stacked">
+                    <li>
+                        <ul>{{i.titre}}</ul>
+                    </li>
+                </ul>
+            </div>
+            <span style="cursor: pointer;" (click)="openDialog(i.titre, i.description)"> voir l'annonce</span>
+        </div>
+    </div>
+</div>

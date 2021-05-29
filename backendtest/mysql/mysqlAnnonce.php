@@ -13,12 +13,48 @@ function getAllAnnonces(){
     return $results;
 }
 
+function getAllAnnoncesTC($type, $cible){
+    global $PDO;
+    $query = "SELECT * FROM annonces WHERE annonces.type = ? AND annonces.cible = ?;";
+
+    $data = array($type, $cible);
+    $statement = $PDO->prepare($query);
+    $exec = $statement->execute($data);
+
+    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $results;
+}
+
+function getAnnonceById($idAnnonce){
+    global $PDO;
+    $query = "SELECT titre, description FROM annonces WHERE annonces.idAnnonce = ?;";
+
+    $data = array($idAnnonce);
+    $statement = $PDO->prepare($query);
+    $exec = $statement->execute($data);
+
+    $results = $statement->fetch(PDO::FETCH_ASSOC);
+    return $results;
+}
+
 function getIdAdminIdUser(){
     global $PDO;
     $query = "SELECT idAdmin, idUser FROM annonces;";
 
     $statement = $PDO->prepare($query);
     $exec = $statement->execute();
+
+    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $results;
+}
+
+function searchingByCibleType($type, $cible){
+    global $PDO;
+    $query = "SELECT idAdmin, idUser FROM annonces WHERE annonces.type = ? AND annonces.cible = ?;";
+
+    $data = array($type, $cible);
+    $statement = $PDO->prepare($query);
+    $exec = $statement->execute($data);
 
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
     return $results;
@@ -36,6 +72,7 @@ function getAnnonceByUser($idUser){
     return $results;
 
 }
+
 function getAnnonceByAdmin($idAdmin){
     global $PDO;
     $query = "SELECT * FROM annonces WHERE annonces.idAdmin = ?;";
@@ -48,23 +85,13 @@ function getAnnonceByAdmin($idAdmin){
     return $results;
 
 }
-function searchingByCibleType($type, $cible){
+
+function insertAnnonce($type, $titre, $date_fin, $description, $cible, $idUser, $duree, $vue, $candidature,$duree_max,$duree_min,$tel_responsable,$postuler,$idAdmin, $fichier){
     global $PDO;
-    $query = "SELECT * FROM annonces WHERE annonces.type = ? AND annonces.cible = ? ;";
+    $query = "INSERT INTO annonces (idAnnonce, type, titre, description, cible, idUser, duree, vue, candidature, duree_max, duree_min, tel_responsable, postuler, status, idAdmin, fichier)"
+                ."VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, ?, ?);";
 
-    $data = array($type, $cible);
-    $statment = $PDO->prepare($query);
-    $exec = $statment->execute($data);
-
-    $results = $statment->fetchAll(PDO::FETCH_ASSOC);
-    return $results;
-}
-function insertAnnonce($type, $titre, $date_fin, $description, $cible, $fichier, $idUser, $duree, $vue, $candidature){
-    global $PDO;
-    $query = "INSERT INTO annonces (idAnnonce, type, titre, date_fin, description, cible, fichier, idUser, duree, vue, candidature)"
-                ."VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-
-    $data = array($type, $titre, $date_fin, $description, $cible, $fichier, $idUser, $duree, $vue, $candidature);
+    $data = array($type,$titre,$date_fin,$description,$cible,$idUser,$duree,$vue,$candidature,$duree_max,$duree_min,$tel_responsable,$postuler,$idAdmin,$fichier);
     $statement = $PDO->prepare($query);
     $exec = $statement->execute($data);
     if($exec) return $PDO->lastInsertId();

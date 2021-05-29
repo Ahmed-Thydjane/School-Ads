@@ -1,20 +1,58 @@
+<ng-template #dialog>
+    <h2 matDialogTitle>{{titre}}</h2>
+        <p matDialogContent>{{description}}</p>
+        <mat-dialog-actions align='end'>
+            <button mat-button >Postuler</button>
+            <button mat-button matDialogClose>Fermer</button>
+        </mat-dialog-actions>
+</ng-template>
+<div class="container">
+    <div class="row">
+    	<div class="col-md-4 col-md-offset-4" style="display: block; margin-left: auto;margin-right: auto;border: solid 2px black;border-radius: 20px;margin-bottom: 15px;">
+    		<div class="panel panel-default" >
+			  	<div class="panel-body" >
+			    	<form accept-charset="UTF-8" role="form" >
+                        <fieldset  >
+                        <label for="select" class="col-lg-2">Type</label>
+                        <div class="col-lg-7" style="display: block; margin-left: auto;margin-right: auto;">
+                        <select class="form-control "[(ngModel)]="type" (ngModelChange)='onSelectedType($event)' [ngModelOptions]="{standalone: true}">
+                            <option *ngFor="let t of types" [value]="t.name">
+                                {{t.name}}
+                            </option>
+                        </select>
+                        </div>
+                        <br/>
+                        <label for="select" class="col-lg-2">Cible</label>
+                        <div class="col-lg-7" style="display: block; margin-left: auto;margin-right: auto;">
+                        <select class="form-control "[(ngModel)]="cible" (ngModelChange)='onSelectedCible($event)' [ngModelOptions]="{standalone: true}">
+                            <option *ngFor="let c of cibles" [value]="c.name">
+                                {{c.name}}
+                            </option>
+                        </select>
+                        </div>
+                    </fieldset>
+                </form>
+                <input class="btn btn-lg btn-success btn-block" type="submit" value="Search" (click) ="rechercher()">
+            </div>
+        </div>
+    </div>
+</div>
+<br/>
 <div class="row"  *ngFor="let i of annonces">
-    <div class="col-md-4"> 
-        <!-- Widget: user widget style 1 -->
-        <div class="box box-widget widget-user-2">
-            <!-- Add the bg color to the header using any of the bg-* classes -->
+    <div *ngIf="i.field != null" class="col-md-4" style="display: block; margin-left: auto;margin-right: auto; border: solid 2px black;border-radius: 20px;margin-bottom: 15px;">
+        <div class="box box-widget widget-user-2" >
             <div class="widget-user-header bg-yellow">
-            <!-- /.widget-user-image -->
-            <h3 class="widget-user-username">{{i.field.nom}} {{i.field.prenom}}</h3>
-            <h5 class="widget-user-desc">{{i.field.profil}}</h5>
+                <h3 class="widget-user-username">{{i.field.nom}} {{i.field.prenom}}</h3>
+                <h5 class="widget-user-desc">{{i.field.profil}}</h5>
             </div>
             <div class="box-footer no-padding">
-            <ul class="nav nav-stacked">
-                <li>
-                    <ul>{{i.titre}}</ul>
-                </li>
-            </ul>
+                <ul class="nav nav-stacked">
+                    <li>
+                        <ul>{{i.titre}}</ul>
+                    </li>
+                </ul>
             </div>
+            <span style="cursor: pointer;" (click)="openDialog(i.titre, i.description)"> voir l'annonce</span>
         </div>
     </div>
 </div>

@@ -1,0 +1,53 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<ng-template #dialog1>
+    <h2 matDialogTitle>Vous voulez vraiment supprimer cet utilisateur </h2>
+    <!--<p matDialogContent> {{alertinscrit1}}</p>-->
+    <mat-dialog-actions align='end'>
+        <button mat-button matDialogClose (click)="supprimer()">Ok</button>
+      <button mat-button matDialogClose>Annuler</button>
+    </mat-dialog-actions>
+  </ng-template>
+<div style="margin: 10px;">
+    <button type="button" class="btn btn-secondary btn-lg" routerLink="/addadmin">Ajouter un administration</button>
+</div>
+<div>
+    <input type="text" style="width: 300px;margin: 10px;">
+    <input class="btn btn-success" type="submit" value="Search">
+</div>
+<table mat-table [dataSource]="dataSource"  class="mat-elevation-z8" matSort style="background-color: teal;">
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="nom">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom et prénom</th>
+      <td mat-cell *matCellDef="let element"> {{element.nom}} {{element.prenom}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="profil">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Profil </th>
+      <td mat-cell *matCellDef="let element"> {{element.profil}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+    <ng-container matColumnDef="nbAnnonces">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre d'annonces </th>
+        <td mat-cell *matCellDef="let element"> </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+    <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+        <td mat-cell *matCellDef="let element"><i style="cursor: pointer;" class="far fa-trash-alt" (click)="openDialog1(element.idUser)"></i></td>
+      </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr style="transform: rotate(0);" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  

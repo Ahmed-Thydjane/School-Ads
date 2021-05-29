@@ -29,6 +29,27 @@ function isAdminExistName($email, $password){
     return $results;
 }
 
+function deleteUser($idUser){
+    global $PDO;
+    $query = "DELETE FROM utilisateur WHERE utilisateur.idUser = ?;";
+
+    $data = array($idUser);
+    $statement = $PDO->prepare($query);
+    return $statement->execute($data);
+}
+
+function getAllUsers(){
+    global $PDO;
+    $query = "SELECT * FROM utilisateur;";
+
+    $statement = $PDO->prepare($query);
+    $exec = $statement->execute();
+
+    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    return $results;
+}
+
 function getUserId($idUser){
     global $PDO;
     $query = "SELECT * FROM utilisateur WHERE utilisateur.idUser = ? ;";

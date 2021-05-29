@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import {MatTableModule} from '@angular/material/table';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -16,6 +16,13 @@ import { AddannoncesComponent } from './addannonces/addannonces.component';
 import { UpdateuserComponent } from './updateuser/updateuser.component';
 import { MesannoncesComponent } from './mesannonces/mesannonces.component';
 import { AddadminComponent } from './addadmin/addadmin.component';
+import { AdministrationComponent } from './administration/administration.component';
+import { GestionuserComponent } from './gestionuser/gestionuser.component';
+import { GestionannoncesComponent } from './gestionannonces/gestionannonces.component';
+import { GestiontoutesannoncesComponent } from './gestiontoutesannonces/gestiontoutesannonces.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { ParticlesModule } from 'angular-particle';
 
 @NgModule({
   declarations: [
@@ -27,7 +34,11 @@ import { AddadminComponent } from './addadmin/addadmin.component';
     AddannoncesComponent,
     UpdateuserComponent,
     MesannoncesComponent,
-    AddadminComponent
+    AddadminComponent,
+    AdministrationComponent,
+    GestionuserComponent,
+    GestionannoncesComponent,
+    GestiontoutesannoncesComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +47,11 @@ import { AddadminComponent } from './addadmin/addadmin.component';
     HttpClientModule,
     NgbModule,
     MatDialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    ParticlesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

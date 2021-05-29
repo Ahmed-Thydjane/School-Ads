@@ -4,10 +4,8 @@ require_once 'mysql/mysqlAnnonce.php';
 require_once 'mysql/mysqlAuth.php';
 require_once 'helper.php';
 
-//getAllAnnonces --> idAdmin + idUser
 
 $data = getIdAdminIdUser();
-//print_r($data);
 $res1 = array();
 $res2 = array();
 foreach ($data as $i){
