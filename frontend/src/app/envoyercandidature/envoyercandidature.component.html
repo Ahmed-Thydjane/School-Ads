@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+    <div class="col-md-4 col-md-offset-4" style="display: block; margin-left: auto;margin-right: auto;">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form accept-charset="UTF-8" role="form">
+                <fieldset>
+                    <div class="form-group">
+                        <label >From : </label>
+                        <input class="form-control" placeholder="From" type="text" [(ngModel)]="from" [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <div class="form-group">
+                        <label >Titre : </label>
+                        <input class="form-control" placeholder="Titre" type="text" [(ngModel)]="titre" [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Description</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                </fieldset>
+                </form>
+                <input class="btn btn-lg btn-success btn-block" type="submit" value="Envoyer ma candidature">
+                <input class="btn btn-lg btn-facebook btn-block" type="submit" value="Cancel">
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
